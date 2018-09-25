@@ -15,7 +15,7 @@ public class Background extends GameObject{
     @Override
     public void run() {
         if (this.y >= -image.getHeight()+ 600 ) {
-            this.y -=50;
+            this.y -=1;
         }
     }
 
