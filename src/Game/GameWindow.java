@@ -1,4 +1,7 @@
+package Game;
+
 import base.KeyEventPress;
+import base.Settings;
 import tklibs.SpriteUtils;
 
 import javax.swing.*;
@@ -13,7 +16,7 @@ public class GameWindow extends JFrame {
     public GameWindow(){
         //setup
 
-        this.setSize(800,600);
+        this.setSize(Settings.screen_width, Settings.screen_height);
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setupEventListener();
@@ -25,6 +28,8 @@ public class GameWindow extends JFrame {
 
     private void setupEventListener() {
         this.addKeyListener(new KeyAdapter() {
+
+
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_W ){
@@ -38,6 +43,9 @@ public class GameWindow extends JFrame {
                 }
                 else if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress = true;
+                }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                    KeyEventPress.isShoot = true;
                 }
             }
 
@@ -55,12 +63,16 @@ public class GameWindow extends JFrame {
                 else if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress = false;
                 }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                    KeyEventPress.isShoot= false;
+                }
             }
+
         });
 
     }
 
-    void gameLoop(){
+    public void gameLoop(){
         long delay = 1000/60;
         long lastTime = 0;
         while(true){
