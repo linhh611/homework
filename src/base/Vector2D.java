@@ -57,7 +57,11 @@ public class Vector2D {
         this.y -=y;
         return this;
     }
-
+    public Vector2D set(float x, float y){
+        this.x = x;
+        this.y = y;
+        return this;
+    }
     /**
      *
      * @param x

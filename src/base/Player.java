@@ -1,6 +1,7 @@
 package base;
 
 import Game.GameCanvas;
+import base.Counter.FrameCounter;
 import base.Renderer.AnimationRenderer;
 import base.Renderer.SingleImageRenderer;
 import tklibs.SpriteUtils;
@@ -10,20 +11,21 @@ import java.lang.management.BufferPoolMXBean;
 import java.util.ArrayList;
 
 public class Player extends GameObject {
-    PlayerBullet bullets;
+    FrameCounter fireCounter;
 
     public Player(){
-        ArrayList<BufferedImage> images = new ArrayList<>();
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/0.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/1.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/2.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/3.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/4.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/5.png"));
-        images.add(SpriteUtils.loadImage("assets/images/players/straight/6.png"));
+        ArrayList<BufferedImage> images =  SpriteUtils.loadImages(
+                "assets/images/players/straight/0.png",
+                "assets/images/players/straight/1.png",
+                "assets/images/players/straight/2.png",
+                "assets/images/players/straight/3.png",
+                "assets/images/players/straight/4.png",
+                "assets/images/players/straight/5.png",
+                "assets/images/players/straight/6.png"
+                );
         this.renderer = new AnimationRenderer(images);
         this.position = new Vector2D(Settings.start_player_position_x, Settings.start_player_positioin_y);
-        this.bullets = new PlayerBullet();
+        this.fireCounter = new FrameCounter(10);
     }
 
     @Override
@@ -31,25 +33,37 @@ public class Player extends GameObject {
         if(KeyEventPress.isUpPress){
             this.move(0,-1);
         }
-        else if(KeyEventPress.isDownPress){
+        if(KeyEventPress.isDownPress){
             this.move(0,1);
         }
-        else if(KeyEventPress.isRightPress){
+        if(KeyEventPress.isRightPress){
             this.move(1,0);
         }
-        else if(KeyEventPress.isLeftPress){
+        if(KeyEventPress.isLeftPress){
             this.move(-1,0);
         }
-        if(KeyEventPress.isShoot){
-            this.shoot();
+        boolean fireCounterRun = this.fireCounter.run();
+        if(KeyEventPress.isFirePress && fireCounterRun){
+       // if(KeyEventPress.isFirePress){
+            this.fire();
         }
     }
 
-    public void shoot(){
-        PlayerBullet bullets = new PlayerBullet();
-        bullets.position.x = this.position.x;
-        bullets.position.y= this.position.y;
-        GameCanvas.bullet.add(bullets);
+    public void fire(){
+        if (this.fireCounter.run()) {
+      //      PlayerBullet bullets = new PlayerBullet();
+       //     GameCanvas.playerBullets.add(bullets);
+            PlayerBullet bullets = GameObject.create(PlayerBullet.class);
+            PlayerBullet2 bullet2 = GameObject.create(PlayerBullet2.class);
+            PlayerBullet3 bullet3 = GameObject.create(PlayerBullet3.class);
+
+            bullets.position.set(this.position.x, this.position.y);
+            bullet2.position.set(this.position.x, this.position.y);
+            bullet3.position.set(this.position.x, this.position.y);
+            this.fireCounter.reset();
+        }
+
+
     }
 
     public void move(int a, int b){

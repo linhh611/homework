@@ -1,5 +1,6 @@
 package Game;
 
+import base.GameObject;
 import base.KeyEventPress;
 import base.Settings;
 import tklibs.SpriteUtils;
@@ -35,17 +36,17 @@ public class GameWindow extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_W ){
                     KeyEventPress.isUpPress = true;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_S){
+                if(e.getKeyCode()==KeyEvent.VK_S){
                     KeyEventPress.isDownPress = true;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_A){
+                if(e.getKeyCode()==KeyEvent.VK_A){
                     KeyEventPress.isLeftPress = true;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_D){
+                if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress = true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    KeyEventPress.isShoot = true;
+                    KeyEventPress.isFirePress = true;
                 }
             }
 
@@ -54,17 +55,17 @@ public class GameWindow extends JFrame {
                 if(e.getKeyCode()==KeyEvent.VK_W){
                     KeyEventPress.isUpPress = false;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_S){
+               if(e.getKeyCode()==KeyEvent.VK_S){
                     KeyEventPress.isDownPress = false;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_A){
+                if(e.getKeyCode()==KeyEvent.VK_A){
                     KeyEventPress.isLeftPress = false;
                 }
-                else if(e.getKeyCode()==KeyEvent.VK_D){
+                if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress = false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    KeyEventPress.isShoot= false;
+                    KeyEventPress.isFirePress= false;
                 }
             }
 
