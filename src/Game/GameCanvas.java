@@ -11,47 +11,21 @@ import java.util.ArrayList;
 public class GameCanvas extends JPanel {
     Background background;
     Player player;
-
- //       public static ArrayList<Enemies> enemy;
- //       public static ArrayList<PlayerBullet> playerBullets;
-
+    Enemies enemy;
     public GameCanvas(){
         //this.background = new Background();
-        this.background = GameObject.create(Background.class);
-        this.player = GameObject.create(Player.class);
- //       enemy = new ArrayList<>();
- //       playerBullets = new ArrayList<>();
-        //enemies
-        Enemies  enemy = GameObject.create(Enemies.class);
+        this.background = GameObject.recycle(Background.class);
+        this.player = GameObject.recycle(Player.class);
+
+        this.enemy = GameObject.recycle(Enemies.class);
             }
     public void run(){
-/*
-        background.run();
-        player.run();
 
-        for(Enemies enemies : enemy){
-            enemies.run();
-
-        }
-        for(PlayerBullet playerBullet: playerBullets){
-            playerBullet.run();
-        }
-*/
     GameObject.runAll(); //>> quan li chung
 
     }
     public void render(Graphics g){
-      /*  background.render(g);
-        player.render(g);
 
-        for(Enemies enemies : enemy){
-            enemies.render(g);
-
-        }
-        for(PlayerBullet playerBullet: playerBullets){
-            playerBullet.render(g);
-        }
-*/
       GameObject.renderAll(g); //quan li chung
     }
 
