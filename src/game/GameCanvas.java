@@ -1,23 +1,21 @@
-package Game;
+package game;
 
 import base.*;
-import tklibs.SpriteUtils;
+import base.enemy.Enemy;
+import base.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class GameCanvas extends JPanel {
     Background background;
     Player player;
-    Enemies enemy;
     public GameCanvas(){
         //this.background = new Background();
         this.background = GameObject.recycle(Background.class);
         this.player = GameObject.recycle(Player.class);
+        Enemy enemy = GameObject.create(Enemy.class);
 
-        this.enemy = GameObject.recycle(Enemies.class);
             }
     public void run(){
 

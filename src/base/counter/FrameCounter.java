@@ -1,4 +1,4 @@
-package base.Counter;
+package base.counter;
 
 public class FrameCounter {
     int frameCount;

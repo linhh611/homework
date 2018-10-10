@@ -1,15 +1,11 @@
-package Game;
+package game;
 
-import base.GameObject;
 import base.KeyEventPress;
 import base.Settings;
-import tklibs.SpriteUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 public class GameWindow extends JFrame {
     GameCanvas canvas;

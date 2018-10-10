@@ -1,11 +1,10 @@
-package base.Renderer;
+package base.renderer;
 
-import base.Counter.FrameCounter;
+import base.counter.FrameCounter;
 import base.GameObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AnimationRenderer extends Renderer {

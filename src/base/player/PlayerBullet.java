@@ -1,41 +1,44 @@
-package base;
+package base.player;
 
-import Game.GameCanvas;
-import base.Renderer.AnimationRenderer;
+import base.GameObject;
+import base.Vector2D;
+import base.enemy.Enemy;
+import base.physics.BoxCollider;
+import base.physics.Physics;
+import base.renderer.AnimationRenderer;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class PlayerBullet extends GameObject implements Physics{
+public class PlayerBullet extends GameObject implements Physics {
     Vector2D velocity;
     BoxCollider collider;
-    public PlayerBullet(){      //khoong khai bao vector 2D vi muon tao ham tao k co doi so.
+    public PlayerBullet() {
         super();
-        ArrayList<BufferedImage> images= SpriteUtils.loadImages(
+        ArrayList<BufferedImage> images = SpriteUtils.loadImages(
                 "assets/images/player-bullets/a/0.png",
                 "assets/images/player-bullets/a/1.png",
                 "assets/images/player-bullets/a/2.png",
                 "assets/images/player-bullets/a/3.png"
-                );
-
+        );
         this.renderer = new AnimationRenderer(images);
-        this.position= new Vector2D(0,0);
-        this.velocity = new Vector2D(0,0);
-       this.collider = new BoxCollider(24,24);
+        this.position = new Vector2D(0, 0);
+        this.velocity = new Vector2D(0, 0);
+        this.collider = new BoxCollider(24, 24);
     }
 
     @Override
     public void run() {
-        Enemies enemy = GameObject.intersect(Enemies.class, this);
-        if(enemy != null){
+        Enemy enemy = GameObject.intersect(Enemy.class, this);
+        if(enemy != null) {
             enemy.destroy();
             this.destroy();
             return;
         }
-        if(this.position.y<0){
+        if(this.position.y < 0) {
             this.destroy();
-            return ;
+            return;
         }
         this.position.addThis(velocity.x, velocity.y);
     }

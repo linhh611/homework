@@ -1,4 +1,6 @@
-package base;
+package base.physics;
+
+import base.GameObject;
 
 public class BoxCollider {
     public int width;
@@ -40,22 +42,6 @@ public class BoxCollider {
 
      }
 
-    public static void main(String[] args) {
-        PlayerBullet b1 = new PlayerBullet();
-        PlayerBullet b2 = new PlayerBullet();
-        PlayerBullet b3 = new PlayerBullet();
-        b1.collider = new BoxCollider(5,5);
-        b2.collider = new BoxCollider(5,5);
-        b3.collider = new BoxCollider(5,5);
-
-        b1.position.set(5,5);
-        b2.position.set(8,8);
-        b3.position.set(11,5);
-
-        System.out.println(b1.collider.intersect(b2,b1)); //true
-        System.out.println(b2.collider.intersect(b3,b2)); //true
-        System.out.println(b1.collider.intersect(b3,b1)); //false
-    }
 
 
 }

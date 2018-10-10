@@ -1,6 +1,4 @@
-package Game;
-
-import Game.GameWindow;
+package game;
 
 /**
  * Created by huynq on 7/4/17.

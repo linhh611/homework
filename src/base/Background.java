@@ -1,6 +1,6 @@
 package base;
 
-import base.Renderer.SingleImageRenderer;
+import base.renderer.SingleImageRenderer;
 import tklibs.SpriteUtils;
 
 import java.awt.image.BufferedImage;
